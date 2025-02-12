@@ -1,0 +1,172 @@
+Trapecio.cpp
+
+#include "Trapecio.h"
+Trapecio::Trapecio() {
+}
+float Trapecio::get_base() {
+	return base;
+}
+void Trapecio::set_base(float _pase) {
+	base = _pase;
+}
+float Trapecio::get_altura() {
+	return altura;
+}
+void Trapecio::set_altura(float _alpura) {
+	altura = _alpura;
+}
+float Trapecio::get_techo() {
+	return techo;
+}
+void Trapecio::set_techo(float _pecho) {
+	techo = _pecho;
+}
+double Trapecio::cca2() {
+	return ((base + techo)/2)* altura ;
+}
+
+Trapecio.h
+
+#pragma once
+class Trapecio
+{
+private:
+	float base;
+	float altura;
+	float techo;
+public:
+public:
+	Trapecio();
+	float get_base();
+	void set_base(float _pase);
+	float get_altura();
+	void set_altura(float _alpura);
+	float get_techo();
+	void set_techo(float _pecho);
+	double cca2();
+};
+
+Rectangulo.cpp
+
+#include "Rectangulo.h"
+Rectangulo::Rectangulo() {
+}
+float Rectangulo::get_Base() {
+	return Base;
+}
+void Rectangulo::set_Base(float _base) {
+   Base =_base;
+}
+float Rectangulo::get_Altura() {
+	return Altura;
+}
+void Rectangulo::set_Altura(float _altura) {
+	Altura = _altura;
+}
+double Rectangulo::cca1() {
+	return Base*Altura;
+}
+
+Rectangulo.h
+
+#pragma once
+class Rectangulo
+{
+private:
+	float Base;
+	float Altura;
+public:
+	Rectangulo();
+	float get_Base();
+	void set_Base(float _base);
+	float get_Altura();
+	void set_Altura(float _altura);
+	double cca1();
+};
+
+Circulo.h
+
+#pragma once
+class Circulo
+{
+private:
+	float radio;
+ public:
+	Circulo();
+	float get_radio();
+	void set_radio(float _radio);
+	double calculararea();
+};
+
+Circulo.cpp#include "Circulo.h"
+#include "math.h"
+Circulo::Circulo() {
+
+}
+float Circulo::get_radio() {
+	return radio;
+}
+void Circulo::set_radio(float _radio) {
+	radio = _radio;
+}
+double Circulo::calculararea() {
+	return 3.141516 * pow(radio, 2);
+}
+
+Programa principal.cpp
+
+#include <iostream>
+#include "Circulo.h"
+#include "Rectangulo.h"
+#include "Trapecio.h"
+using namespace std;
+int main()
+{
+    Circulo circulito;
+    Rectangulo rectangulito;
+    Trapecio trapecito;
+    float Base,radio,base,altura,Altura,techo;
+    int opcion;
+    do {
+        cout << "Menu calcular area" << endl;
+        cout << "1. Area circulo" << endl;
+        cout << "2. Area rectangulo" << endl;
+        cout << "3. Area trapecio" << endl;
+        cout << "0. Salir" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+        switch (opcion) {
+        case 1:
+            cout << "Ingrese el radio del circulo: " << endl;
+            cin >> radio;
+            circulito.set_radio(radio);
+            cout << "El area es: " << circulito.calculararea() << endl;
+            break;
+        case 2:
+            cout << "Ingrese la base del rectangulo: ";
+            cin >> Base;
+            rectangulito.set_Base(Base);
+            cout << "Ingrese la altura del rectangulo: ";
+            cin >> Altura;
+            rectangulito.set_Altura(Altura);
+            cout << "El area es: " << rectangulito.cca1() << endl;
+            break;
+        case 3:
+            cout << "Ingrese La base mayor del trapecio (B): ";
+            cin >> base;
+            trapecito.set_base(base);
+            cout << "Ingrese la base menor del trapecio (b): ";
+            cin >> techo;
+            trapecito.set_techo(techo);
+            cout << "Ingrese la altura del trapecio: ";
+            cin >> altura;
+            trapecito.set_altura(altura);
+            cout << "El area es: " << trapecito.cca2() << endl;
+            break;
+        case 0: break;
+        default: break;
+        }
+    } while (opcion != 0);
+
+
+}
