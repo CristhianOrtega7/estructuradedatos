@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+float SumaR(float n);
+int main()
+{
+	float Suma, n;
+	cout << " ingrese el numero a sumar: ";
+	cin >> n;
+	Suma = SumaR(n);
+	cout << " la suma es: " << SumaR(n);
+	return 0;
+}
+float SumaR(float n)
+{
+	if (n == 1)
+		return 1;
+	else
+		return SumaR(n - 1) + n;
+
+}
+
