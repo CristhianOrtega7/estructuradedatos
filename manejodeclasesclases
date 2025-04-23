@@ -1,0 +1,87 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX_EMPLEADOS = 100;
+
+class Empleado {
+private:
+    string nombre;
+    int edad;
+    float salario;
+
+public:
+    void ingresarDatos() {
+        cout << "Ingrese nombre: ";
+        cin.ignore();
+        getline(cin, nombre);
+        cout << "Ingrese edad: ";
+        cin >> edad;
+        cout << "Ingrese salario: ";
+        cin >> salario;
+    }
+
+    void mostrarDatos() const {
+        cout << "Nombre: " << nombre << endl;
+        cout << "Edad: " << edad << " años" << endl;
+        cout << "Salario: $" << salario << endl;
+        cout << "------------------------" << endl;
+    }
+};
+
+class Planilla {
+private:
+    Empleado empleados[MAX_EMPLEADOS];
+    int cantidad;
+    string nombreSucursal;
+
+public:
+    Planilla(string nombre) {
+        cantidad = 0;
+        nombreSucursal = nombre;
+    }
+
+    void ingresarEmpleados(int _cantidad) {
+        cout << "\nSucursal: " << nombreSucursal << endl;
+        cout << "¿Cuantos empleados desea ingresar? ";
+        cin >> cantidad;
+        cantidad = _cantidad; 
+        for (int i = 0; i < _cantidad; ++i) {
+            cout << "\nEmpleado #" << (i + 1) << " - Sucursal " << nombreSucursal << endl;
+            empleados[i].ingresarDatos();
+        }
+    }
+
+    void mostrarPlanilla(int _cantidad) const {
+        cout << "\n=== PLANILLA DE LA SUCURSAL " << nombreSucursal << " ===" << endl;
+        for (int i = 0; i < cantidad; ++i) {
+            empleados[i].mostrarDatos();
+        }
+    }
+};
+
+int main() {
+    Planilla scz("Santa Cruz");
+    Planilla lpz("La Paz"); 
+    Planilla cbba("Cochabamba");
+    int cantidad;
+    do {
+        cout << "¿Cuantos empleados desea ingresar? ";
+        cin >> cantidad;
+        if (cantidad > MAX_EMPLEADOS || cantidad <= 0) {
+            cout << "Numero no válido. El maximo permitido es " << MAX_EMPLEADOS << "." << endl;
+            cantidad = 0;
+        }
+    } while (cantidad > MAX_EMPLEADOS || cantidad <= 0);
+
+
+     
+    scz.ingresarEmpleados(cantidad);  
+    scz.mostrarPlanilla(cantidad);
+    lpz.ingresarEmpleados(cantidad); 
+    lpz.mostrarPlanilla(cantidad); 
+    cbba.ingresarEmpleados(cantidad); 
+    cbba.mostrarPlanilla(cantidad); 
+
+    return 0;
+}
